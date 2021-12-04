@@ -45,9 +45,11 @@ public class InicioSesion extends javax.swing.JFrame {
         botonAviso = new javax.swing.JLabel();
         Opciones = new javax.swing.JFrame();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnEditarMapa = new javax.swing.JButton();
+        btnVerListas = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        Fondo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         panelInicio = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -114,49 +116,45 @@ public class InicioSesion extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
-        jButton1.setText("Editar mapa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        Opciones.setLocationByPlatform(true);
+        Opciones.setUndecorated(true);
+        Opciones.setResizable(false);
 
-        jButton2.setText("Ver listas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnEditarMapa.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnEditarMapa.setText("Editar mapa");
+        btnEditarMapa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEditarMapaActionPerformed(evt);
             }
         });
+        jPanel5.add(btnEditarMapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
+
+        btnVerListas.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        btnVerListas.setText("Ver listas");
+        btnVerListas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerListasActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnVerListas, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 125, 100, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LOGO_4.png"))); // NOI18N
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 17, -1, -1));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(112, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel5)
-                .addGap(38, 38, 38)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(67, Short.MAX_VALUE))
-        );
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/backIcon_2.png"))); // NOI18N
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FondoOpciones.png"))); // NOI18N
+        jPanel5.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 210));
 
         javax.swing.GroupLayout OpcionesLayout = new javax.swing.GroupLayout(Opciones.getContentPane());
         Opciones.getContentPane().setLayout(OpcionesLayout);
@@ -301,9 +299,9 @@ public class InicioSesion extends javax.swing.JFrame {
                 botonAviso.requestFocus();
             } else {
 //                JOptionPane.showMessageDialog(rootPane, "Correcto!");
-                Opciones.setLocationRelativeTo(null);
-                Opciones.setSize(250,230);
+                Opciones.setSize(300,210);
                 Opciones.setVisible(true);
+                Opciones.setLocationRelativeTo(rootPane);
                 
                 this.setVisible(false);
             }
@@ -362,32 +360,46 @@ public class InicioSesion extends javax.swing.JFrame {
         map.setVisible(true);
     }//GEN-LAST:event_backMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEditarMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarMapaActionPerformed
         // TODO add your handling code here:
         EditarMapa mapEdit = new EditarMapa();
-                this.setVisible(false);
+                Opciones.setVisible(false);
                 mapEdit.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnEditarMapaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnVerListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerListasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        ListaPasajeros lista = new ListaPasajeros();
+//        lista.setLocationByPlatform(true);
+        Opciones.setVisible(false);
+        lista.setVisible(true);
+        
+    }//GEN-LAST:event_btnVerListasActionPerformed
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        Opciones.setVisible(false);
+        map = new Mapa();
+        map.setVisible(true);
+    }//GEN-LAST:event_jLabel8MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Fondo;
     private javax.swing.JFrame Opciones;
     private javax.swing.JPasswordField Password;
     private javax.swing.JTextField User;
     private javax.swing.JFrame aviso;
     private javax.swing.JLabel back;
     private javax.swing.JLabel botonAviso;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnEditarMapa;
+    private javax.swing.JButton btnVerListas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

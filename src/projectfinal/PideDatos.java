@@ -324,6 +324,9 @@ public class PideDatos extends javax.swing.JFrame {
             list.visualizar();
             System.out.println("SIGUENTE LISTA!!!!\n");
         }
+        this.setVisible(false);
+        map = new Mapa();
+        map.setVisible(true);
 
     }//GEN-LAST:event_jLabel9MouseClicked
 

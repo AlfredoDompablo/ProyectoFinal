@@ -12,10 +12,18 @@ import java.util.Scanner;
  *
  * @author Oscar
  */
-public class Lista implements Serializable{
+public class Lista implements Serializable {
 
-    private Nodo primero;
+    private Nodo primero, recorre;
     private String identificador;
+
+    public Nodo getRecorre() {
+        return recorre;
+    }
+
+    public void setRecorre(Nodo recorre) {
+        this.recorre = recorre;
+    }
 
     public Nodo getPrimero() {
         return primero;
@@ -32,12 +40,10 @@ public class Lista implements Serializable{
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
     }
-    
-   
 
     public Lista(String nombre) {
         primero = null;
-        this.identificador= nombre;
+        this.identificador = nombre;
     }
 
     public void visualizar() {
@@ -46,7 +52,8 @@ public class Lista implements Serializable{
         n = primero;
 
         while (n != null) {
-            System.out.println("Nombre: " + n.dato + "\t Edad:" + n.ed + "\t Pasaporte:" + n.bo + "\t Asiento: " + n.cos +  "\t Genero: " + n.gen + "\t Nacionalidad: " + n.nac   );
+            System.out.println("Nombre: " + n.nombre + "\t Edad:" + n.edad + "\t Pasaporte:" + n.pasaporte + "\t Asiento: " + n.asiento
+                    + "\t Genero: " + n.genero + "\t Nacionalidad: " + n.nacionalidad);
             n = n.enlace;
         }
 
@@ -54,45 +61,42 @@ public class Lista implements Serializable{
 
     }
 
-    public Lista insertarAlFrente(String entrada, int ed, String bole, String costo, String genero, String nacionalidad ) {
+    public void inicializaRecorrido() {
+        if (this.primero != null) {
+            this.recorre = this.primero;
+        }
+    }
+
+    public Lista insertarAlFrente(String entrada, int ed, String bole, String costo, String genero, String nacionalidad) {
         Nodo nuevo;
-        nuevo = new Nodo(entrada, ed, bole, costo,genero, nacionalidad);
+        nuevo = new Nodo(entrada, ed, bole, costo, genero, nacionalidad);
         nuevo.enlace = primero;  //enlaza nuevo nodo al frente de la lista.
         primero = nuevo;         //mueve primero y apunta al nuevo nodo
         return this;
     }
-    
-    
-//////////////////////////////////////////////////////////////////////////////////////////   
-/**
- * Clase Nodo
- */
-    public class Nodo implements Serializable{
 
-        Object dato;
-        Object bo;
-        Object cos;
-        Object ed;
-        Object gen;
-        Object nac;
-        Nodo enlace;
+//////////////////////////////////////////////////////////////////////////////////////////   
+    /**
+     * Clase Nodo
+     */
+    public class Nodo implements Serializable {
+
+        private Object nombre;
+        private Object edad;
+        private Object pasaporte;
+        private Object asiento;
+        private Object genero;
+        private Object nacionalidad;
+        private Nodo enlace;
 
         public Nodo(Object x, Object eda, Object bol, Object cost, Object gene, Object naci) {
-            dato = x;
-            ed = eda;
-            bo = bol;
-            cos = cost;
-            gen= gene;
-            nac=naci;
+            nombre = x;
+            edad = eda;
+            pasaporte = bol;
+            asiento = cost;
+            genero = gene;
+            nacionalidad = naci;
             enlace = null;
-        }
-
-        public int getDato() {
-            return (int) dato;
-        }
-
-        public void setDato(int dato) {
-            this.dato = dato;
         }
 
         public Nodo getEnlace() {
@@ -102,6 +106,31 @@ public class Lista implements Serializable{
         public void setEnlace(Nodo enlace) {
             this.enlace = enlace;
         }
+
+        public Object getNombre() {
+            return nombre;
+        }
+
+        public Object getEdad() {
+            return edad;
+        }
+
+        public Object getPasaporte() {
+            return pasaporte;
+        }
+
+        public Object getAsiento() {
+            return asiento;
+        }
+
+        public Object getGenero() {
+            return genero;
+        }
+
+        public Object getNacionalidad() {
+            return nacionalidad;
+        }
+        
 
     }
 }
