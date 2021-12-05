@@ -53,7 +53,7 @@ public class IO {
         return null;
     }
 
-    public void imprimirEnArchivoPin(Map claseUsuaria) {
+    public void imprimirEnArchivoPin(HashMap<String,Pin> claseUsuaria) {
         File x = new File("Pin.obj");
         x.delete();
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Pin.obj", true))) {
@@ -64,11 +64,39 @@ public class IO {
         }
     }
 
-    public Map leerDeArchivoPin() {
+    public HashMap<String,Pin> leerDeArchivoPin() {
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Pin.obj"))) {
             while (true) {
-                Map clase = (Map) ois.readObject();
+                HashMap<String,Pin> clase = (HashMap<String,Pin>) ois.readObject();
+                System.out.println("Leido");
+                return clase;
+            }
+        } catch (EOFException e) {
+            System.out.println("Fin del documento");
+        } catch (FileNotFoundException e) {
+            System.out.println("No existe el documento");
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
+        return null;
+    }
+    public void imprimirEnArchivoPinFijo(HashMap<String,PinFijo> claseUsuaria) {
+        File x = new File("PinFijo.obj");
+        x.delete();
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("PinFijo.obj", true))) {
+            oos.writeObject(claseUsuaria);
+            System.out.println("Escrito");
+            oos.close();
+        } catch (IOException ex) {
+        }
+    }
+
+    public HashMap<String,PinFijo> leerDeArchivoPinFijo() {
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("PinFijo.obj"))) {
+            while (true) {
+                HashMap<String,PinFijo> clase = (HashMap<String,PinFijo>) ois.readObject();
                 System.out.println("Leido");
                 return clase;
             }

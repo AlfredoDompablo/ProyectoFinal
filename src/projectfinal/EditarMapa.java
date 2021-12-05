@@ -6,6 +6,7 @@
 package projectfinal;
 
 import java.awt.Color;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
@@ -30,6 +31,10 @@ public class EditarMapa extends javax.swing.JFrame {
         initComponents();
         LeerNodos();
         ms = new ClaseUsuaria(this.mapaPanel, this.mapa);
+        File x = new File("Pin.obj");
+        if(x.exists()){
+           ms.repintar();
+        }
     }
 
     /**
@@ -225,6 +230,11 @@ public class EditarMapa extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Guardar");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -417,7 +427,7 @@ public class EditarMapa extends javax.swing.JFrame {
         Grafo g = ES.leerDeArchivo();
         g.agregarVertice(nameAereopuerto.getText());
         ES.imprimirEnArchivo(g);
-        ms.Nuevo_Objeto();
+        ms.Nuevo_Objeto(nameAereopuerto.getText());
         LeerNodos();
         
     }//GEN-LAST:event_btnAgregarMouseClicked
@@ -431,6 +441,13 @@ public class EditarMapa extends javax.swing.JFrame {
             nameAereopuerto.requestFocus();
         }
     }//GEN-LAST:event_nameAereopuertoMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+//        ms.guardarMapa();
+        ms.actualizarArchivo();
+        
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     private DefaultListModel Aereopuertos, conexiones;
     // Variables declaration - do not modify//GEN-BEGIN:variables

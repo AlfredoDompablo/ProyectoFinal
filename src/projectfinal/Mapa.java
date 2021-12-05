@@ -37,7 +37,7 @@ public class Mapa extends javax.swing.JFrame {
     public Mapa() {
         Rutas = new DefaultListModel();
         x = new File("Grafo.obj");
-        if (!x.exists()){
+        if (!x.exists()) {
             Grafo();
             System.out.println("Grafo cargado");
         }
@@ -48,6 +48,11 @@ public class Mapa extends javax.swing.JFrame {
 //        ms.repintar();
         this.setLayout(null);
         this.setLocationRelativeTo(null);
+        x = new File("Pin.obj");
+        if (x.exists()) {
+            ms.pintarFijos();
+//            ms.repintar();
+        }
 
     }
 
@@ -493,6 +498,11 @@ public class Mapa extends javax.swing.JFrame {
                 System.out.println(cadena);
                 Rutas.add(i, cadena);
             }
+//            for (ArrayList<String> arrayList : resp) {
+//                for (String string : arrayList) {
+//
+//                }
+//            }
             if (cadena.isEmpty()) {
                 System.out.println("No se encontraron Rutas");
                 Rutas.addElement("No hay rutas disponibles");
@@ -514,7 +524,7 @@ public class Mapa extends javax.swing.JFrame {
 
         ArrayList<Lista> copia = SE.leerDeArchivoPasajeros();
         try {
-           boolean u=false;
+            boolean u = false;
             for (Lista list : copia) {
                 System.out.println(list.getIdentificador());
                 System.out.println(listRutas.getSelectedValue());
@@ -524,20 +534,18 @@ public class Mapa extends javax.swing.JFrame {
                     pide.setLocationRelativeTo(null);
                     this.setVisible(false);
                     pide.setVisible(true);
-                    u=true;
+                    u = true;
                     break;
                 }
-                
-                
+
             }
-            if(!u){
-            PideDatos pide = new PideDatos(new Lista(listRutas.getSelectedValue()));
-            pide.setLocationRelativeTo(null);
-            this.setVisible(false);
-            pide.setVisible(true);
+            if (!u) {
+                PideDatos pide = new PideDatos(new Lista(listRutas.getSelectedValue()));
+                pide.setLocationRelativeTo(null);
+                this.setVisible(false);
+                pide.setVisible(true);
             }
-            
-            
+
         } catch (Exception e) {
             System.out.println("CREO QUE YA FUNCIONO!!!");
             PideDatos pide = new PideDatos(new Lista(listRutas.getSelectedValue()));

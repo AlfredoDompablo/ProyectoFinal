@@ -17,26 +17,39 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-
 /**
  *
  * @author OSCAR
  */
-public class Pin extends JLabel implements MouseListener, MouseMotionListener,Serializable {
+public class Pin extends JLabel implements MouseListener, MouseMotionListener, Serializable {
 
-    /** Identificador de objeto */
-    private String key = "";    
-    /** Posicion de imagen */
-    private Point posicion = new Point(0,0);
-    /** Tamaño de imagen */
-    private Dimension d = new Dimension(32,32);    
-    /** variable que sirve para calcular el movimiento del objeto */
+    /**
+     * Identificador de objeto
+     */
+    private String key = "";
+    /**
+     * Posicion de imagen
+     */
+    private Point posicion = new Point(0, 0);
+    /**
+     * Tamaño de imagen
+     */
+    private Dimension d = new Dimension(32, 32);
+    /**
+     * variable que sirve para calcular el movimiento del objeto
+     */
     private Point start_loc;
-    /** variable que sirve para calcular el movimiento del objeto */
+    /**
+     * variable que sirve para calcular el movimiento del objeto
+     */
     private Point start_drag;
-    /** variable que sirve para calcular el movimiento del objeto */
+    /**
+     * variable que sirve para calcular el movimiento del objeto
+     */
     private Point offset;
-    /** variables auxiliares para el desplazamiento del objeto*/
+    /**
+     * variables auxiliares para el desplazamiento del objeto
+     */
     private int nuevo_X = 1;
     private int nuevo_Y = 1;
 
@@ -47,27 +60,25 @@ public class Pin extends JLabel implements MouseListener, MouseMotionListener,Se
     public int getNuevo_Y() {
         return nuevo_Y;
     }
-    
-    
-    
+
     /**
      * Constructor de clase
      */
-    public Pin(String key){        
+    public Pin(String key) {
         //se inician propiedades de objeto
         this.key = key;
-        this.setToolTipText( key );
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));        
+        this.setToolTipText(key);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.setSize(d);
-        this.setPreferredSize(d);          
-        this.setIcon( new ImageIcon(getClass().getResource("/Imagenes/pin_2.png")) ); 
+        this.setPreferredSize(d);
+        this.setIcon(new ImageIcon(getClass().getResource("/Imagenes/pin_2.png")));
         this.setText("");
-        this.setVisible( true );
-        this.setLocation( posicion );
+        this.setVisible(true);
+        this.setLocation(posicion);
         //se agregan los listener
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
-        
+
     }
 
     public String getKey() {
@@ -79,51 +90,58 @@ public class Pin extends JLabel implements MouseListener, MouseMotionListener,Se
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-       this.start_drag = getScreenLocation(e);
-       this.start_loc = this.getLocation();
+    public void mouseClicked(MouseEvent e) {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {          
+    public void mousePressed(MouseEvent e) {
+        this.start_drag = getScreenLocation(e);
+        this.start_loc = this.getLocation();
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
         nuevo_X = (this.getLocation().x);
         nuevo_Y = (this.getLocation().y);
-        this.setLocation( nuevo_X, nuevo_Y );
+        this.setLocation(nuevo_X, nuevo_Y);
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        this.setBorder(BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 1));   
+        this.setBorder(BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 1));
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        this.setBorder( null );   
+        this.setBorder(null);
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-      Point current = this.getScreenLocation(e);
-      offset = new Point((int) current.getX() - (int) start_drag.getX(),(int) current.getY() - (int) start_drag.getY());
-      Point new_location = new Point((int) (this.start_loc.getX() + offset.getX()), (int) (this.start_loc.getY() + offset.getY()));
-      this.setLocation(new_location);          
+        Point current = this.getScreenLocation(e);
+        offset = new Point((int) current.getX() - (int) start_drag.getX(), (int) current.getY() - (int) start_drag.getY());
+        Point new_location = new Point((int) (this.start_loc.getX() + offset.getX()), (int) (this.start_loc.getY() + offset.getY()));
+        this.setLocation(new_location);
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {}
-    
-    
-   /**
-    * metodo para obtener la posicion  del frame en la pantalla
-    * @param MouseEvent evt
-    */
+    public void mouseMoved(MouseEvent e) {
+    }
+
+    /**
+     * metodo para obtener la posicion del frame en la pantalla
+     *
+     * @param MouseEvent evt
+     */
     private Point getScreenLocation(MouseEvent evt) {
         Point cursor = evt.getPoint();
         Point target_location = this.getLocationOnScreen();
         return new Point((int) (target_location.getX() + cursor.getX()),
-               (int) (target_location.getY() + cursor.getY()));
+                (int) (target_location.getY() + cursor.getY()));
     }
+
+    
+
+    
+
 }
