@@ -101,6 +101,7 @@ public class Grafo implements Serializable{
             if (vecinos != null) {
                 for (Nodo n : vecinos) {
                     String act = n.getVertice();
+                    n.getCosto();
                     ArrayList<String> copia = (ArrayList<String>) camino.clone();
                     if (!copia.contains(act)) {
                         copia.add(act);

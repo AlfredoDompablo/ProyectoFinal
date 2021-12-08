@@ -42,7 +42,7 @@ public class Mapa extends javax.swing.JFrame {
             System.out.println("Grafo cargado");
         }
         g = SE.leerDeArchivo();
-        pinMap = new ArrayList<>();
+//        pinMap = new ArrayList<>();
         initComponents();
         ms = new ClaseUsuaria(this.mapaPanel, this.mapa);
 //        ms.repintar();
@@ -63,7 +63,6 @@ public class Mapa extends javax.swing.JFrame {
         g.agregarVertice("4");
         g.agregarVertice("5");
         g.agregarArista("1", "3", 1);
-//        pinMap.add(new JLabel());
         g.agregarArista("1", "2", 9);
         g.agregarArista("1", "4", 2);
         g.agregarArista("3", "2", 4);
@@ -485,6 +484,7 @@ public class Mapa extends javax.swing.JFrame {
 
         try {
             ArrayList<ArrayList<String>> resp = g.caminos(cajaOrigen.getText(), cajaDestino.getText());
+            
             error.setText("");
             System.out.println("Rutas:");
             String cadena = "";

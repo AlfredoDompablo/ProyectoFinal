@@ -120,6 +120,7 @@ public class Pin extends JLabel implements MouseListener, MouseMotionListener, S
     public void mouseDragged(MouseEvent e) {
         Point current = this.getScreenLocation(e);
         offset = new Point((int) current.getX() - (int) start_drag.getX(), (int) current.getY() - (int) start_drag.getY());
+        
         Point new_location = new Point((int) (this.start_loc.getX() + offset.getX()), (int) (this.start_loc.getY() + offset.getY()));
         this.setLocation(new_location);
     }
