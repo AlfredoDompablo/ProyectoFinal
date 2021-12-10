@@ -488,6 +488,7 @@ public class Mapa extends javax.swing.JFrame {
             error.setText("");
             System.out.println("Rutas:");
             String cadena = "";
+            String pesos;
             Rutas.removeAllElements();
             for (int i = 0; i < resp.size(); i++) {
                 cadena = "Ruta " + (i + 1) + ": ";
